@@ -1,4 +1,12 @@
-﻿function showChatDialog() {
+﻿if (document.readyState !== 'loading') {
+    console.log('document is already ready, just execute code here');
+}
+else {
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log('document was not ready, place code here');
+    });
+}
+function showChatDialog() {
     var dialogEl = document.getElementById('chatDialog');
     dialogEl.style.display = 'block';
 }
@@ -35,4 +43,4 @@ function renderMessage(name, time, message) {
 }
 
 
-document.addEventListener('DOMContentLoaded',ready);
+document.addEventListener('DOMContentLoaded', ready);

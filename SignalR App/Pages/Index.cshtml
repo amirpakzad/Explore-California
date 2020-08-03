@@ -4,12 +4,9 @@
 }
 
 <link href="~/css/main.css" rel="stylesheet" type="text/css" media="screen, projection">
-
-@section Scripts {
-    <script src="~/js/index.js"></script>
-}
-
 <link rel="stylesheet" href="~/css/chat.css" />
+
+
 
 <div id="chatDialog" title="Chat with support">
     <div id="chatMainPanel">
@@ -121,3 +118,9 @@
         </section>
     </footer>
 </div>
+@section Scripts {
+    <script src="js/index.js"></script>
+    <script>
+        console.log('document is already ready, just execute code here');
+    </script>
+}
