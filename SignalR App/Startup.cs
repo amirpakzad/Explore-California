@@ -46,7 +46,13 @@ namespace SignalR_App
             app.UseRouting();
 
             app.UseAuthorization();
-         
+            app.UseCors(options =>
+            {
+                options.WithOrigins("www.example.com")
+                    .AllowAnyHeader()
+                    .WithMethods("GET", "POST")
+                    .AllowCredentials();
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<ChatHub>("/chathub");

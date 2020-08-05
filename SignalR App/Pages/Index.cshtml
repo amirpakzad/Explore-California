@@ -9,11 +9,21 @@
 
 
 <div id="chatDialog" title="Chat with support">
+    <div id="chatWelcomePanel">
+        <h3>Have a question ?</h3>
+        <form>
+            <input type="text" placeholder="Enter your Name ..." />
+            <button type="submit">Connect</button>
+        </form>
+    </div>
+    <div id="chatConnectionInfo" class="disconnected">
+        <strong>Conecting ....</strong>
+    </div>
     <div id="chatMainPanel">
         <ul id="chatHistory"></ul>
         <div id="bottomPanel">
             <form id="chatForm">
-                <input id="messageTextbox" type="text" placeholder="Type a message" />
+                <input id="messageTextbox" type="text" placeholder="Type a message"/>
                 <button type="submit">Send</button>
             </form>
         </div>
