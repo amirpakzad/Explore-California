@@ -29,6 +29,7 @@ function onConnected() {
     dialogEl.classList.remove()('disconnected');
     var messageTextBoxEl = document.getElementById('messageTextbox');
     messageTextBoxEl.focus();
+    connection.invoke('SetName', chatterName);
 }
 
 

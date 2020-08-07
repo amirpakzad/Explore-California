@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SignalR_App.Services;
 
 namespace SignalR_App
 {
@@ -23,6 +24,7 @@ namespace SignalR_App
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IChatRoomService, InMemoryChatRoomService>();
             services.AddRazorPages();
             services.AddSignalR();  
         }
