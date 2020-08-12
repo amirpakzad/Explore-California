@@ -31,6 +31,11 @@ namespace SignalR_App.Services
             return Task.FromResult(id);
         }
 
+        public Task<IReadOnlyDictionary<Guid, ChatRoom>> GetAllRooms()
+        {
+            return Task.FromResult(_roomInfo as IReadOnlyDictionary<Guid, ChatRoom>);
+        }
+
         public Task<List<ChatMessage>> GetMessageHistory(Guid roomId)
         {
             _messageHistory.TryGetValue(roomId, out var messages);

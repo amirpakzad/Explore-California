@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,7 +27,15 @@ namespace SignalR_App
         {
             services.AddSingleton<IChatRoomService, InMemoryChatRoomService>();
             services.AddRazorPages();
-            services.AddSignalR();  
+            services.AddSignalR();
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                })
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/login";
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,22 +51,24 @@ namespace SignalR_App
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
-
+         
+            //app.UseCors(options =>
+            //{
+            //    options.WithOrigins("www.example.com")
+            //        .AllowAnyHeader()
+            //        .WithMethods("GET", "POST")
+            //        .AllowCredentials();
+            //});
+            app.UseAuthentication();
             app.UseAuthorization();
-            app.UseCors(options =>
-            {
-                options.WithOrigins("www.example.com")
-                    .AllowAnyHeader()
-                    .WithMethods("GET", "POST")
-                    .AllowCredentials();
-            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<ChatHub>("/chathub");
+                endpoints.MapHub<AgentHub>("/agentHub");
                 endpoints.MapRazorPages();
             });
         }
